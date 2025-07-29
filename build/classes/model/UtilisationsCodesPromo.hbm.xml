@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.UtilisationsCodesPromo" optimistic-lock="none" schema="public" table="utilisations_codes_promo">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.CodesPromotionnels" fetch="select" name="codesPromotionnels">
+            <column name="code_promo_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Clients" fetch="select" name="clients">
+            <column name="client_id" not-null="true"/>
+        </many-to-one>
+        <property name="montantRemiseApplique" type="big_decimal">
+            <column name="montant_remise_applique" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="utiliseLe" type="timestamp">
+            <column length="29" name="utilise_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

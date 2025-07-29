@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Transporteurs" optimistic-lock="none" schema="public" table="transporteurs">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="20" name="code" unique="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="telephone" type="string">
+            <column length="20" name="telephone"/>
+        </property>
+        <property name="email" type="string">
+            <column length="150" name="email"/>
+        </property>
+        <property name="siteWeb" type="string">
+            <column length="200" name="site_web"/>
+        </property>
+        <property name="apiUrl" type="string">
+            <column length="500" name="api_url"/>
+        </property>
+        <property name="apiKeyHash" type="string">
+            <column length="255" name="api_key_hash"/>
+        </property>
+        <property name="formatNumeroSuivi" type="string">
+            <column length="100" name="format_numero_suivi"/>
+        </property>
+        <property name="zonesCouverture" type="serializable">
+            <column name="zones_couverture"/>
+        </property>
+        <property name="tarifs" type="serializable">
+            <column name="tarifs"/>
+        </property>
+        <property name="fraisBase" type="big_decimal">
+            <column name="frais_base" precision="10" scale="2"/>
+        </property>
+        <property name="delaiLivraisonMin" type="java.lang.Integer">
+            <column name="delai_livraison_min"/>
+        </property>
+        <property name="delaiLivraisonMax" type="java.lang.Integer">
+            <column name="delai_livraison_max"/>
+        </property>
+        <property name="noteMoyenne" type="big_decimal">
+            <column name="note_moyenne" precision="3" scale="2"/>
+        </property>
+        <property name="nombreEvaluations" type="java.lang.Integer">
+            <column name="nombre_evaluations"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="livraisonses" table="livraisons">
+            <key>
+                <column name="transporteur_id"/>
+            </key>
+            <one-to-many class="model.Livraisons"/>
+        </set>
+    </class>
+</hibernate-mapping>

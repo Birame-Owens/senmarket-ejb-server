@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" 
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <!-- Unité de persistance pour Apache Tomcat -->
+    <persistence-unit name="SenMarketPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Auto-découverte des entités dans le package model -->
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        
+        <properties>
+            <!-- Configuration de la base de données PostgreSQL -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/SenMarket"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.password" value="poiuy"/>
+            
+            <!-- Dialecte Hibernate pour PostgreSQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+            
+            <!-- AJOUT CRITIQUE : Forcer Javassist pour contourner ByteBuddy -->
+            <property name="hibernate.bytecode.provider" value="javassist"/>
+            
+            <!-- Stratégie de génération du schéma -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            
+            <!-- Affichage des requêtes SQL -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            
+            <!-- Configuration pour PostgreSQL -->
+            <property name="hibernate.default_schema" value="public"/>
+            
+            <!-- Génération automatique des ID -->
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
+            
+            <!-- MODIFICATION : Pool simple au lieu de HikariCP (cause de conflits) -->
+            <property name="hibernate.connection.pool_size" value="20"/>
+            <!-- SUPPRIMÉ : HikariCP qui cause des problèmes ByteBuddy
+            <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="20"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+            <property name="hibernate.hikari.connectionTimeout" value="30000"/>
+            <property name="hibernate.hikari.leakDetectionThreshold" value="60000"/>
+            -->
+            
+            <!-- Cache de second niveau (désactivé pour débuter) -->
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.cache.use_query_cache" value="false"/>
+            
+            <!-- SUPPRIMÉ temporairement : Types JSON PostgreSQL (peut causer des conflits)
+            <property name="hibernate.type_contributors" 
+                      value="com.vladmihalcea.hibernate.type.contrib.hibernate.PostgreSQLTypesContributor"/>
+            -->
+            
+            <!-- Optimisations -->
+            <property name="hibernate.jdbc.batch_size" value="20"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <property name="hibernate.order_updates" value="true"/>
+            <property name="hibernate.jdbc.batch_versioned_data" value="true"/>
+            
+            <!-- Configuration pour l'encodage UTF-8 -->
+            <property name="hibernate.connection.charSet" value="UTF-8"/>
+            <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
+            
+            <!-- Fuseau horaire pour le Sénégal -->
+            <property name="hibernate.jdbc.time_zone" value="Africa/Dakar"/>
+            
+            <!-- MODIFICATION : Désactiver les statistiques pour éviter les conflits -->
+            <property name="hibernate.generate_statistics" value="false"/>
+            
+            <!-- Configuration Tomcat spécifique -->
+            <property name="hibernate.current_session_context_class" value="thread"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

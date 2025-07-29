@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VCommandesCompletes" optimistic-lock="none" schema="public" table="v_commandes_completes">
+        <composite-id class="model.VCommandesCompletesId" name="id">
+            <key-property name="boutiqueNom" type="string">
+                <column length="150" name="boutique_nom"/>
+            </key-property>
+            <key-property name="clientEmail" type="string">
+                <column length="150" name="client_email"/>
+            </key-property>
+            <key-property name="clientNom" type="string">
+                <column length="201" name="client_nom"/>
+            </key-property>
+            <key-property name="dateCommande" type="timestamp">
+                <column length="29" name="date_commande"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="modePaiement" type="string">
+                <column length="50" name="mode_paiement"/>
+            </key-property>
+            <key-property name="nombreArticles" type="java.lang.Long">
+                <column name="nombre_articles"/>
+            </key-property>
+            <key-property name="numeroCommande" type="string">
+                <column length="50" name="numero_commande"/>
+            </key-property>
+            <key-property name="statutCouleur" type="string">
+                <column length="7" name="statut_couleur"/>
+            </key-property>
+            <key-property name="statutLibelle" type="string">
+                <column length="100" name="statut_libelle"/>
+            </key-property>
+            <key-property name="statutPaiement" type="string">
+                <column length="20" name="statut_paiement"/>
+            </key-property>
+            <key-property name="totalCommande" type="big_decimal">
+                <column name="total_commande" precision="12" scale="2"/>
+            </key-property>
+            <key-property name="uuid" type="serializable">
+                <column name="uuid"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

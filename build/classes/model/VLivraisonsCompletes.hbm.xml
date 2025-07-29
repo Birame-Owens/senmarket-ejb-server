@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VLivraisonsCompletes" optimistic-lock="none" schema="public" table="v_livraisons_completes">
+        <composite-id class="model.VLivraisonsCompletesId" name="id">
+            <key-property name="boutiqueNom" type="string">
+                <column length="150" name="boutique_nom"/>
+            </key-property>
+            <key-property name="clientNom" type="string">
+                <column length="201" name="client_nom"/>
+            </key-property>
+            <key-property name="clientTelephone" type="string">
+                <column length="20" name="client_telephone"/>
+            </key-property>
+            <key-property name="dateExpedition" type="timestamp">
+                <column length="29" name="date_expedition"/>
+            </key-property>
+            <key-property name="dateLivraisonPrevue" type="timestamp">
+                <column length="29" name="date_livraison_prevue"/>
+            </key-property>
+            <key-property name="dateLivraisonReelle" type="timestamp">
+                <column length="29" name="date_livraison_reelle"/>
+            </key-property>
+            <key-property name="fraisLivraison" type="big_decimal">
+                <column name="frais_livraison" precision="10" scale="2"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="numeroCommande" type="string">
+                <column length="50" name="numero_commande"/>
+            </key-property>
+            <key-property name="numeroSuivi" type="string">
+                <column length="100" name="numero_suivi"/>
+            </key-property>
+            <key-property name="statut" type="string">
+                <column length="20" name="statut"/>
+            </key-property>
+            <key-property name="transporteurNom" type="string">
+                <column length="100" name="transporteur_nom"/>
+            </key-property>
+            <key-property name="typeLivraison" type="string">
+                <column length="20" name="type_livraison"/>
+            </key-property>
+            <key-property name="uuid" type="serializable">
+                <column name="uuid"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

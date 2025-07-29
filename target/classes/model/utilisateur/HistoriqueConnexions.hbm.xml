@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.HistoriqueConnexions" optimistic-lock="none" schema="public" table="historique_connexions">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id" not-null="true"/>
+        </many-to-one>
+        <property name="typeConnexion" type="string">
+            <column length="20" name="type_connexion" not-null="true"/>
+        </property>
+        <property name="methodeAuth" type="string">
+            <column length="20" name="methode_auth"/>
+        </property>
+        <property name="connecteLe" type="timestamp">
+            <column length="29" name="connecte_le"/>
+        </property>
+        <property name="deconnecteLe" type="timestamp">
+            <column length="29" name="deconnecte_le"/>
+        </property>
+        <property name="dureeSession" type="serializable">
+            <column name="duree_session"/>
+        </property>
+        <property name="adresseIp" type="serializable">
+            <column name="adresse_ip"/>
+        </property>
+        <property name="userAgent" type="string">
+            <column name="user_agent"/>
+        </property>
+        <property name="empreinteAppareil" type="string">
+            <column length="255" name="empreinte_appareil"/>
+        </property>
+        <property name="appareilType" type="string">
+            <column length="50" name="appareil_type"/>
+        </property>
+        <property name="navigateur" type="string">
+            <column length="50" name="navigateur"/>
+        </property>
+        <property name="systemeExploitation" type="string">
+            <column length="50" name="systeme_exploitation"/>
+        </property>
+        <property name="paysConnexion" type="string">
+            <column length="100" name="pays_connexion"/>
+        </property>
+        <property name="villeConnexion" type="string">
+            <column length="100" name="ville_connexion"/>
+        </property>
+        <property name="estConnexionSuspecte" type="java.lang.Boolean">
+            <column name="est_connexion_suspecte"/>
+        </property>
+        <property name="raisonSuspicion" type="string">
+            <column name="raison_suspicion"/>
+        </property>
+        <property name="actionSecuritePrise" type="string">
+            <column name="action_securite_prise"/>
+        </property>
+        <property name="estReussie" type="java.lang.Boolean">
+            <column name="est_reussie"/>
+        </property>
+        <property name="codeErreur" type="string">
+            <column length="50" name="code_erreur"/>
+        </property>
+        <property name="messageErreur" type="string">
+            <column name="message_erreur"/>
+        </property>
+    </class>
+</hibernate-mapping>

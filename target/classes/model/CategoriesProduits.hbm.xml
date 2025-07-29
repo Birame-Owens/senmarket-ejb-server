@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.CategoriesProduits" optimistic-lock="none" schema="public" table="categories_produits">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.CategoriesProduits" fetch="select" name="categoriesProduits">
+            <column name="parent_id"/>
+        </many-to-one>
+        <property name="nom" type="string">
+            <column length="150" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="iconeUrl" type="string">
+            <column length="500" name="icone_url"/>
+        </property>
+        <property name="imageUrl" type="string">
+            <column length="500" name="image_url"/>
+        </property>
+        <property name="niveau" type="java.lang.Integer">
+            <column name="niveau"/>
+        </property>
+        <property name="ordreAffichage" type="java.lang.Integer">
+            <column name="ordre_affichage"/>
+        </property>
+        <property name="cheminHierarchique" type="string">
+            <column name="chemin_hierarchique"/>
+        </property>
+        <property name="motsCles" type="serializable">
+            <column name="mots_cles"/>
+        </property>
+        <property name="contenuRecherche" type="serializable">
+            <column name="contenu_recherche"/>
+        </property>
+        <property name="attributsRequis" type="serializable">
+            <column name="attributs_requis"/>
+        </property>
+        <property name="parametres" type="serializable">
+            <column name="parametres"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="categoriesProduitses" table="categories_produits">
+            <key>
+                <column name="parent_id"/>
+            </key>
+            <one-to-many class="model.CategoriesProduits"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="produitses" table="produits">
+            <key>
+                <column name="categorie_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Produits"/>
+        </set>
+    </class>
+</hibernate-mapping>

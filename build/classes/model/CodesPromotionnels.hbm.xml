@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.CodesPromotionnels" optimistic-lock="none" schema="public" table="codes_promotionnels">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="cree_par"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column length="50" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="150" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="typeRemise" type="string">
+            <column length="20" name="type_remise" not-null="true"/>
+        </property>
+        <property name="valeurRemise" type="big_decimal">
+            <column name="valeur_remise" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="montantMaximum" type="big_decimal">
+            <column name="montant_maximum" precision="12" scale="2"/>
+        </property>
+        <property name="montantMinimumCommande" type="big_decimal">
+            <column name="montant_minimum_commande" precision="12" scale="2"/>
+        </property>
+        <property name="produitsEligibles" type="serializable">
+            <column name="produits_eligibles"/>
+        </property>
+        <property name="categoriesEligibles" type="serializable">
+            <column name="categories_eligibles"/>
+        </property>
+        <property name="boutiquesEligibles" type="serializable">
+            <column name="boutiques_eligibles"/>
+        </property>
+        <property name="utilisationMaxGlobale" type="java.lang.Integer">
+            <column name="utilisation_max_globale"/>
+        </property>
+        <property name="utilisationMaxParClient" type="java.lang.Integer">
+            <column name="utilisation_max_par_client"/>
+        </property>
+        <property name="utilisationActuelle" type="java.lang.Integer">
+            <column name="utilisation_actuelle"/>
+        </property>
+        <property name="dateDebut" type="timestamp">
+            <column length="29" name="date_debut" not-null="true"/>
+        </property>
+        <property name="dateFin" type="timestamp">
+            <column length="29" name="date_fin" not-null="true"/>
+        </property>
+        <property name="segmentsClients" type="serializable">
+            <column name="segments_clients"/>
+        </property>
+        <property name="clientsSpecifiques" type="serializable">
+            <column name="clients_specifiques"/>
+        </property>
+        <property name="campagneMarketing" type="string">
+            <column length="100" name="campagne_marketing"/>
+        </property>
+        <property name="canalDistribution" type="string">
+            <column length="50" name="canal_distribution"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="utilisationsCodesPromos" table="utilisations_codes_promo">
+            <key>
+                <column name="code_promo_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.UtilisationsCodesPromo"/>
+        </set>
+    </class>
+</hibernate-mapping>

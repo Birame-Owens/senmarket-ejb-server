@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.ProfilsUtilisateur" optimistic-lock="none" schema="public" table="profils_utilisateur">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="permissions" type="serializable">
+            <column name="permissions"/>
+        </property>
+        <property name="niveauAcces" type="java.lang.Integer">
+            <column name="niveau_acces"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="personneses" table="personnes">
+            <key>
+                <column name="profil_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Personnes"/>
+        </set>
+    </class>
+</hibernate-mapping>

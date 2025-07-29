@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.CampagnesMarketing" optimistic-lock="none" schema="public" table="campagnes_marketing">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="cree_par"/>
+        </many-to-one>
+        <property name="nom" type="string">
+            <column length="150" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="typeCampagne" type="string">
+            <column length="50" name="type_campagne"/>
+        </property>
+        <property name="segmentsCibles" type="serializable">
+            <column name="segments_cibles"/>
+        </property>
+        <property name="criteresCiblage" type="serializable">
+            <column name="criteres_ciblage"/>
+        </property>
+        <property name="sujet" type="string">
+            <column length="200" name="sujet"/>
+        </property>
+        <property name="contenuHtml" type="string">
+            <column name="contenu_html"/>
+        </property>
+        <property name="contenuTexte" type="string">
+            <column name="contenu_texte"/>
+        </property>
+        <property name="imagesUrls" type="serializable">
+            <column name="images_urls"/>
+        </property>
+        <property name="dateDebut" type="timestamp">
+            <column length="29" name="date_debut"/>
+        </property>
+        <property name="dateFin" type="timestamp">
+            <column length="29" name="date_fin"/>
+        </property>
+        <property name="frequenceEnvoi" type="string">
+            <column length="20" name="frequence_envoi"/>
+        </property>
+        <property name="destinatairesCibles" type="java.lang.Integer">
+            <column name="destinataires_cibles"/>
+        </property>
+        <property name="messagesEnvoyes" type="java.lang.Integer">
+            <column name="messages_envoyes"/>
+        </property>
+        <property name="messagesDelivres" type="java.lang.Integer">
+            <column name="messages_delivres"/>
+        </property>
+        <property name="ouvertures" type="java.lang.Integer">
+            <column name="ouvertures"/>
+        </property>
+        <property name="clics" type="java.lang.Integer">
+            <column name="clics"/>
+        </property>
+        <property name="conversions" type="java.lang.Integer">
+            <column name="conversions"/>
+        </property>
+        <property name="budgetAlloue" type="big_decimal">
+            <column name="budget_alloue" precision="12" scale="2"/>
+        </property>
+        <property name="coutActuel" type="big_decimal">
+            <column name="cout_actuel" precision="12" scale="2"/>
+        </property>
+        <property name="statut" type="string">
+            <column length="20" name="statut"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

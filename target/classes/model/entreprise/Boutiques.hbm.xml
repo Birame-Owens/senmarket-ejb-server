@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Boutiques" optimistic-lock="none" schema="public" table="boutiques">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Entreprises" fetch="select" name="entreprises">
+            <column name="entreprise_id"/>
+        </many-to-one>
+        <many-to-one class="model.Personnes" fetch="select" name="personnes">
+            <column name="proprietaire_id"/>
+        </many-to-one>
+        <many-to-one class="model.Pays" fetch="select" name="pays">
+            <column name="pays_id"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="150" name="nom" not-null="true"/>
+        </property>
+        <property name="codeBoutique" type="string">
+            <column length="20" name="code_boutique" unique="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="slogan" type="string">
+            <column length="200" name="slogan"/>
+        </property>
+        <property name="email" type="string">
+            <column length="150" name="email"/>
+        </property>
+        <property name="telephone" type="string">
+            <column length="20" name="telephone"/>
+        </property>
+        <property name="siteWeb" type="string">
+            <column length="200" name="site_web"/>
+        </property>
+        <property name="adresseLigne1" type="string">
+            <column name="adresse_ligne1" not-null="true"/>
+        </property>
+        <property name="adresseLigne2" type="string">
+            <column name="adresse_ligne2"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="100" name="ville" not-null="true"/>
+        </property>
+        <property name="region" type="string">
+            <column length="100" name="region"/>
+        </property>
+        <property name="codePostal" type="string">
+            <column length="20" name="code_postal"/>
+        </property>
+        <property name="coordonneesGps" type="serializable">
+            <column name="coordonnees_gps" not-null="true"/>
+        </property>
+        <property name="horairesOuverture" type="serializable">
+            <column name="horaires_ouverture"/>
+        </property>
+        <property name="logoUrl" type="string">
+            <column length="500" name="logo_url"/>
+        </property>
+        <property name="banniereUrl" type="string">
+            <column length="500" name="banniere_url"/>
+        </property>
+        <property name="photosBoutique" type="serializable">
+            <column name="photos_boutique"/>
+        </property>
+        <property name="couleursTheme" type="serializable">
+            <column name="couleurs_theme"/>
+        </property>
+        <property name="categoriePrincipale" type="string">
+            <column length="100" name="categorie_principale"/>
+        </property>
+        <property name="categoriesSecondaires" type="serializable">
+            <column name="categories_secondaires"/>
+        </property>
+        <property name="motsClesRecherche" type="serializable">
+            <column name="mots_cles_recherche"/>
+        </property>
+        <property name="noteMoyenne" type="big_decimal">
+            <column name="note_moyenne" precision="3" scale="2"/>
+        </property>
+        <property name="nombreEvaluations" type="java.lang.Integer">
+            <column name="nombre_evaluations"/>
+        </property>
+        <property name="livraisonDisponible" type="java.lang.Boolean">
+            <column name="livraison_disponible"/>
+        </property>
+        <property name="rayonLivraisonKm" type="java.lang.Integer">
+            <column name="rayon_livraison_km"/>
+        </property>
+        <property name="fraisLivraison" type="big_decimal">
+            <column name="frais_livraison" precision="10" scale="2"/>
+        </property>
+        <property name="livraisonGratuiteSeuil" type="big_decimal">
+            <column name="livraison_gratuite_seuil" precision="10" scale="2"/>
+        </property>
+        <property name="accepteEspeces" type="java.lang.Boolean">
+            <column name="accepte_especes"/>
+        </property>
+        <property name="accepteCarte" type="java.lang.Boolean">
+            <column name="accepte_carte"/>
+        </property>
+        <property name="accepteMobileMoney" type="java.lang.Boolean">
+            <column name="accepte_mobile_money"/>
+        </property>
+        <property name="stripeAccountId" type="string">
+            <column length="100" name="stripe_account_id"/>
+        </property>
+        <property name="contenuRecherche" type="serializable">
+            <column name="contenu_recherche"/>
+        </property>
+        <property name="tagsRecherche" type="serializable">
+            <column name="tags_recherche"/>
+        </property>
+        <property name="parametres" type="serializable">
+            <column name="parametres"/>
+        </property>
+        <property name="metadonnees" type="serializable">
+            <column name="metadonnees"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="estVerifie" type="java.lang.Boolean">
+            <column name="est_verifie"/>
+        </property>
+        <property name="estEnLigne" type="java.lang.Boolean">
+            <column name="est_en_ligne"/>
+        </property>
+        <property name="derniereActivite" type="timestamp">
+            <column length="29" name="derniere_activite"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="evenementsAnalyticses" table="evenements_analytics">
+            <key>
+                <column name="boutique_id"/>
+            </key>
+            <one-to-many class="model.EvenementsAnalytics"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="employeses" table="employes">
+            <key>
+                <column name="boutique_id"/>
+            </key>
+            <one-to-many class="model.Employes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="metriquesQuotidienneses" table="metriques_quotidiennes">
+            <key>
+                <column name="boutique_id"/>
+            </key>
+            <one-to-many class="model.MetriquesQuotidiennes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="produitses" table="produits">
+            <key>
+                <column name="boutique_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Produits"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="commandeses" table="commandes">
+            <key>
+                <column name="boutique_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Commandes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueRechercheses" table="historique_recherches">
+            <key>
+                <column name="boutique_cliquee_id"/>
+            </key>
+            <one-to-many class="model.HistoriqueRecherches"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsBoutiqueses" table="evaluations_boutiques">
+            <key>
+                <column name="boutique_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.EvaluationsBoutiques"/>
+        </set>
+    </class>
+</hibernate-mapping>

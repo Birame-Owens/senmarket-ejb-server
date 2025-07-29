@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.EvenementsAnalytics" optimistic-lock="none" schema="public" table="evenements_analytics">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_id"/>
+        </many-to-one>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id"/>
+        </many-to-one>
+        <many-to-one class="model.Boutiques" fetch="select" name="boutiques">
+            <column name="boutique_id"/>
+        </many-to-one>
+        <property name="sessionId" type="string">
+            <column length="255" name="session_id"/>
+        </property>
+        <property name="nomEvenement" type="string">
+            <column length="100" name="nom_evenement" not-null="true"/>
+        </property>
+        <property name="categorieEvenement" type="string">
+            <column length="50" name="categorie_evenement"/>
+        </property>
+        <property name="pageUrl" type="string">
+            <column length="500" name="page_url"/>
+        </property>
+        <property name="pagePrecedente" type="string">
+            <column length="500" name="page_precedente"/>
+        </property>
+        <property name="proprietes" type="serializable">
+            <column name="proprietes"/>
+        </property>
+        <property name="valeurMonetaire" type="big_decimal">
+            <column name="valeur_monetaire" precision="12" scale="2"/>
+        </property>
+        <property name="adresseIp" type="serializable">
+            <column name="adresse_ip"/>
+        </property>
+        <property name="userAgent" type="string">
+            <column name="user_agent"/>
+        </property>
+        <property name="appareilType" type="string">
+            <column length="20" name="appareil_type"/>
+        </property>
+        <property name="systemeExploitation" type="string">
+            <column length="50" name="systeme_exploitation"/>
+        </property>
+        <property name="navigateur" type="string">
+            <column length="50" name="navigateur"/>
+        </property>
+        <property name="pays" type="string">
+            <column length="100" name="pays"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="100" name="ville"/>
+        </property>
+        <property name="coordonnees" type="serializable">
+            <column name="coordonnees"/>
+        </property>
+        <property name="timestampEvenement" type="timestamp">
+            <column length="29" name="timestamp_evenement"/>
+        </property>
+    </class>
+</hibernate-mapping>

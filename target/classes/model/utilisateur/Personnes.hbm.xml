@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Personnes" optimistic-lock="none" schema="public" table="personnes">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ProfilsUtilisateur" fetch="select" name="profilsUtilisateur">
+            <column name="profil_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Pays" fetch="select" name="pays">
+            <column name="pays_id"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="prenom" type="string">
+            <column length="100" name="prenom" not-null="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true"/>
+        </property>
+        <property name="nomComplet" type="string">
+            <column length="201" name="nom_complet"/>
+        </property>
+        <property name="email" type="string">
+            <column length="150" name="email" unique="true"/>
+        </property>
+        <property name="telephone" type="string">
+            <column length="20" name="telephone"/>
+        </property>
+        <property name="dateNaissance" type="date">
+            <column length="13" name="date_naissance"/>
+        </property>
+        <property name="genre" type="string">
+            <column length="10" name="genre"/>
+        </property>
+        <property name="photoProfilUrl" type="string">
+            <column length="500" name="photo_profil_url"/>
+        </property>
+        <property name="adresseLigne1" type="string">
+            <column name="adresse_ligne1"/>
+        </property>
+        <property name="adresseLigne2" type="string">
+            <column name="adresse_ligne2"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="100" name="ville"/>
+        </property>
+        <property name="region" type="string">
+            <column length="100" name="region"/>
+        </property>
+        <property name="codePostal" type="string">
+            <column length="20" name="code_postal"/>
+        </property>
+        <property name="coordonneesGps" type="serializable">
+            <column name="coordonnees_gps"/>
+        </property>
+        <property name="languePreferee" type="string">
+            <column length="10" name="langue_preferee"/>
+        </property>
+        <property name="fuseauHoraire" type="string">
+            <column length="50" name="fuseau_horaire"/>
+        </property>
+        <property name="preferences" type="serializable">
+            <column name="preferences"/>
+        </property>
+        <property name="metadonnees" type="serializable">
+            <column name="metadonnees"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="comptesUtilisateurs" table="comptes_utilisateur">
+            <key>
+                <column name="personne_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.ComptesUtilisateur"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="clientses" table="clients">
+            <key>
+                <column name="personne_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Clients"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="boutiqueses" table="boutiques">
+            <key>
+                <column name="proprietaire_id"/>
+            </key>
+            <one-to-many class="model.Boutiques"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="employeses" table="employes">
+            <key>
+                <column name="personne_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Employes"/>
+        </set>
+    </class>
+</hibernate-mapping>

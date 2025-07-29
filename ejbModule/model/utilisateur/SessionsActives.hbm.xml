@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.SessionsActives" optimistic-lock="none" schema="public" table="sessions_actives">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id" not-null="true"/>
+        </many-to-one>
+        <property name="tokenSession" type="string">
+            <column length="255" name="token_session" not-null="true" unique="true"/>
+        </property>
+        <property name="tokenRefresh" type="string">
+            <column length="255" name="token_refresh" unique="true"/>
+        </property>
+        <property name="expireLe" type="timestamp">
+            <column length="29" name="expire_le" not-null="true"/>
+        </property>
+        <property name="derniereActivite" type="timestamp">
+            <column length="29" name="derniere_activite"/>
+        </property>
+        <property name="adresseIp" type="serializable">
+            <column name="adresse_ip"/>
+        </property>
+        <property name="userAgent" type="string">
+            <column name="user_agent"/>
+        </property>
+        <property name="empreinteAppareil" type="string">
+            <column length="255" name="empreinte_appareil"/>
+        </property>
+        <property name="nomAppareil" type="string">
+            <column length="100" name="nom_appareil"/>
+        </property>
+        <property name="pays" type="string">
+            <column length="100" name="pays"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="100" name="ville"/>
+        </property>
+        <property name="coordonneesGps" type="serializable">
+            <column name="coordonnees_gps"/>
+        </property>
+        <property name="metadonnees" type="serializable">
+            <column name="metadonnees"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

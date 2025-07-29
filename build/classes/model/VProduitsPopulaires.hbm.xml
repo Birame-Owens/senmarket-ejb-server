@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VProduitsPopulaires" optimistic-lock="none" schema="public" table="v_produits_populaires">
+        <composite-id class="model.VProduitsPopulairesId" name="id">
+            <key-property name="boutiqueNom" type="string">
+                <column length="150" name="boutique_nom"/>
+            </key-property>
+            <key-property name="categorieNom" type="string">
+                <column length="150" name="categorie_nom"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="imagePrincipaleUrl" type="string">
+                <column length="500" name="image_principale_url"/>
+            </key-property>
+            <key-property name="nom" type="string">
+                <column length="200" name="nom"/>
+            </key-property>
+            <key-property name="nombreCommandes" type="java.lang.Long">
+                <column name="nombre_commandes"/>
+            </key-property>
+            <key-property name="noteMoyenne" type="java.lang.Byte">
+                <column name="note_moyenne" precision="0" scale="0"/>
+            </key-property>
+            <key-property name="prixVente" type="big_decimal">
+                <column name="prix_vente" precision="12" scale="2"/>
+            </key-property>
+            <key-property name="quantiteVendue" type="java.lang.Long">
+                <column name="quantite_vendue"/>
+            </key-property>
+            <key-property name="stockActuel" type="java.lang.Integer">
+                <column name="stock_actuel"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

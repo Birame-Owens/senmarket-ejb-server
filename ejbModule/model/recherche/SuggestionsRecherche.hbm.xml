@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.SuggestionsRecherche" optimistic-lock="none" schema="public" table="suggestions_recherche">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="texteSuggestion" type="string">
+            <column name="texte_suggestion" not-null="true" unique="true"/>
+        </property>
+        <property name="frequenceUtilisation" type="java.lang.Integer">
+            <column name="frequence_utilisation"/>
+        </property>
+        <property name="langue" type="string">
+            <column length="10" name="langue"/>
+        </property>
+        <property name="categoriesAssociees" type="serializable">
+            <column name="categories_associees"/>
+        </property>
+        <property name="tagsAssocies" type="serializable">
+            <column name="tags_associes"/>
+        </property>
+        <property name="populariteScore" type="big_decimal">
+            <column name="popularite_score" precision="5" scale="2"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

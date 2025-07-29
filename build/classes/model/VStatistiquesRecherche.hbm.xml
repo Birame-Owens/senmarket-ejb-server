@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VStatistiquesRecherche" optimistic-lock="none" schema="public" table="v_statistiques_recherche">
+        <composite-id class="model.VStatistiquesRechercheId" name="id">
+            <key-property name="dateRecherche" type="date">
+                <column length="13" name="date_recherche"/>
+            </key-property>
+            <key-property name="langueRecherche" type="string">
+                <column length="10" name="langue_recherche"/>
+            </key-property>
+            <key-property name="nombreRecherches" type="java.lang.Long">
+                <column name="nombre_recherches"/>
+            </key-property>
+            <key-property name="recherchesAvecClic" type="java.lang.Long">
+                <column name="recherches_avec_clic"/>
+            </key-property>
+            <key-property name="recherchesAvecResultats" type="java.lang.Long">
+                <column name="recherches_avec_resultats"/>
+            </key-property>
+            <key-property name="tauxClicPct" type="java.lang.Byte">
+                <column name="taux_clic_pct" precision="0" scale="0"/>
+            </key-property>
+            <key-property name="typeRecherche" type="string">
+                <column length="20" name="type_recherche"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.MouvementsStock" optimistic-lock="none" schema="public" table="mouvements_stock">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="cree_par"/>
+        </many-to-one>
+        <many-to-one class="model.Employes" fetch="select" name="employes">
+            <column name="employe_id"/>
+        </many-to-one>
+        <property name="typeMouvement" type="string">
+            <column length="20" name="type_mouvement" not-null="true"/>
+        </property>
+        <property name="motif" type="string">
+            <column length="100" name="motif"/>
+        </property>
+        <property name="quantiteAvant" type="int">
+            <column name="quantite_avant" not-null="true"/>
+        </property>
+        <property name="quantiteMouvement" type="int">
+            <column name="quantite_mouvement" not-null="true"/>
+        </property>
+        <property name="quantiteApres" type="int">
+            <column name="quantite_apres" not-null="true"/>
+        </property>
+        <property name="prixUnitaire" type="big_decimal">
+            <column name="prix_unitaire" precision="12" scale="2"/>
+        </property>
+        <property name="valeurTotale" type="big_decimal">
+            <column name="valeur_totale" precision="12" scale="2"/>
+        </property>
+        <property name="referenceExterne" type="string">
+            <column length="100" name="reference_externe"/>
+        </property>
+        <property name="commentaire" type="string">
+            <column name="commentaire"/>
+        </property>
+        <property name="documentJustificatifUrl" type="string">
+            <column length="500" name="document_justificatif_url"/>
+        </property>
+        <property name="lotNumero" type="string">
+            <column length="100" name="lot_numero"/>
+        </property>
+        <property name="dateExpiration" type="date">
+            <column length="13" name="date_expiration"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

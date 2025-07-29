@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.MethodesPaiement" optimistic-lock="none" schema="public" table="methodes_paiement">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Devises" fetch="select" name="devises">
+            <column name="devise_id"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="estEnLigne" type="java.lang.Boolean">
+            <column name="est_en_ligne"/>
+        </property>
+        <property name="estHorsLigne" type="java.lang.Boolean">
+            <column name="est_hors_ligne"/>
+        </property>
+        <property name="fraisPourcentage" type="big_decimal">
+            <column name="frais_pourcentage" precision="5" scale="4"/>
+        </property>
+        <property name="fraisFixe" type="big_decimal">
+            <column name="frais_fixe" precision="8" scale="2"/>
+        </property>
+        <property name="montantMinimum" type="big_decimal">
+            <column name="montant_minimum" precision="12" scale="2"/>
+        </property>
+        <property name="montantMaximum" type="big_decimal">
+            <column name="montant_maximum" precision="12" scale="2"/>
+        </property>
+        <property name="stripePaymentMethodType" type="string">
+            <column length="50" name="stripe_payment_method_type"/>
+        </property>
+        <property name="iconeUrl" type="string">
+            <column length="500" name="icone_url"/>
+        </property>
+        <property name="couleurTheme" type="string">
+            <column length="7" name="couleur_theme"/>
+        </property>
+        <property name="paysSupportes" type="serializable">
+            <column name="pays_supportes"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="transactionsPaiements" table="transactions_paiement">
+            <key>
+                <column name="methode_paiement_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.TransactionsPaiement"/>
+        </set>
+    </class>
+</hibernate-mapping>

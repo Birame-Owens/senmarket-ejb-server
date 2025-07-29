@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.SynonymesRecherche" optimistic-lock="none" schema="public" table="synonymes_recherche">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="motPrincipal" type="string">
+            <column length="100" name="mot_principal" not-null="true"/>
+        </property>
+        <property name="synonyme" type="string">
+            <column length="100" name="synonyme" not-null="true"/>
+        </property>
+        <property name="langue" type="string">
+            <column length="10" name="langue"/>
+        </property>
+        <property name="poids" type="big_decimal">
+            <column name="poids" precision="3" scale="2"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+    </class>
+</hibernate-mapping>

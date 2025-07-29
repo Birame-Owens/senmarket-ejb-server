@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VVentesBoutiques" optimistic-lock="none" schema="public" table="v_ventes_boutiques">
+        <composite-id class="model.VVentesBoutiquesId" name="id">
+            <key-property name="boutiqueId" type="java.lang.Integer">
+                <column name="boutique_id"/>
+            </key-property>
+            <key-property name="boutiqueNom" type="string">
+                <column length="150" name="boutique_nom"/>
+            </key-property>
+            <key-property name="chiffreAffaires" type="java.lang.Byte">
+                <column name="chiffre_affaires" precision="0" scale="0"/>
+            </key-property>
+            <key-property name="clientsUniques" type="java.lang.Long">
+                <column name="clients_uniques"/>
+            </key-property>
+            <key-property name="derniereVente" type="timestamp">
+                <column length="29" name="derniere_vente"/>
+            </key-property>
+            <key-property name="nombreCommandes" type="java.lang.Long">
+                <column name="nombre_commandes"/>
+            </key-property>
+            <key-property name="panierMoyen" type="java.lang.Byte">
+                <column name="panier_moyen" precision="0" scale="0"/>
+            </key-property>
+            <key-property name="ville" type="string">
+                <column length="100" name="ville"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

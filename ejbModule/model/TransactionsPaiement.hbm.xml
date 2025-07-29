@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.TransactionsPaiement" optimistic-lock="none" schema="public" table="transactions_paiement">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Devises" fetch="select" name="devises">
+            <column name="devise_id"/>
+        </many-to-one>
+        <many-to-one class="model.MethodesPaiement" fetch="select" name="methodesPaiement">
+            <column name="methode_paiement_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="montant" type="big_decimal">
+            <column name="montant" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="fraisTransaction" type="big_decimal">
+            <column name="frais_transaction" precision="12" scale="2"/>
+        </property>
+        <property name="montantNet" type="big_decimal">
+            <column name="montant_net" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="stripePaymentIntentId" type="string">
+            <column length="100" name="stripe_payment_intent_id"/>
+        </property>
+        <property name="stripeChargeId" type="string">
+            <column length="100" name="stripe_charge_id"/>
+        </property>
+        <property name="stripeTransferId" type="string">
+            <column length="100" name="stripe_transfer_id"/>
+        </property>
+        <property name="referenceExterne" type="string">
+            <column length="100" name="reference_externe"/>
+        </property>
+        <property name="statut" type="string">
+            <column length="20" name="statut"/>
+        </property>
+        <property name="codeErreur" type="string">
+            <column length="50" name="code_erreur"/>
+        </property>
+        <property name="messageErreur" type="string">
+            <column name="message_erreur"/>
+        </property>
+        <property name="detailsCarte" type="serializable">
+            <column name="details_carte"/>
+        </property>
+        <property name="detailsMobileMoney" type="serializable">
+            <column name="details_mobile_money"/>
+        </property>
+        <property name="dateInitiation" type="timestamp">
+            <column length="29" name="date_initiation"/>
+        </property>
+        <property name="dateAutorisation" type="timestamp">
+            <column length="29" name="date_autorisation"/>
+        </property>
+        <property name="dateCapture" type="timestamp">
+            <column length="29" name="date_capture"/>
+        </property>
+        <property name="dateEchec" type="timestamp">
+            <column length="29" name="date_echec"/>
+        </property>
+        <property name="scoreRisque" type="big_decimal">
+            <column name="score_risque" precision="4" scale="3"/>
+        </property>
+        <property name="controlesSecurite" type="serializable">
+            <column name="controles_securite"/>
+        </property>
+        <property name="adresseIpPaiement" type="serializable">
+            <column name="adresse_ip_paiement"/>
+        </property>
+        <property name="montantRembourse" type="big_decimal">
+            <column name="montant_rembourse" precision="12" scale="2"/>
+        </property>
+        <property name="dateRemboursement" type="timestamp">
+            <column length="29" name="date_remboursement"/>
+        </property>
+        <property name="raisonRemboursement" type="string">
+            <column name="raison_remboursement"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="remboursementses" table="remboursements">
+            <key>
+                <column name="transaction_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Remboursements"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Devises" optimistic-lock="none" schema="public" table="devises">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="3" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="50" name="nom" not-null="true"/>
+        </property>
+        <property name="symbole" type="string">
+            <column length="5" name="symbole"/>
+        </property>
+        <property name="decimales" type="java.lang.Integer">
+            <column name="decimales"/>
+        </property>
+        <property name="tauxChange" type="big_decimal">
+            <column name="taux_change" precision="15" scale="6"/>
+        </property>
+        <property name="estDeviseBase" type="java.lang.Boolean">
+            <column name="est_devise_base"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="produitses" table="produits">
+            <key>
+                <column name="devise_id"/>
+            </key>
+            <one-to-many class="model.Produits"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="entrepriseses" table="entreprises">
+            <key>
+                <column name="devise_id"/>
+            </key>
+            <one-to-many class="model.Entreprises"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="transactionsPaiements" table="transactions_paiement">
+            <key>
+                <column name="devise_id"/>
+            </key>
+            <one-to-many class="model.TransactionsPaiement"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="commandeses" table="commandes">
+            <key>
+                <column name="devise_id"/>
+            </key>
+            <one-to-many class="model.Commandes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="methodesPaiements" table="methodes_paiement">
+            <key>
+                <column name="devise_id"/>
+            </key>
+            <one-to-many class="model.MethodesPaiement"/>
+        </set>
+    </class>
+</hibernate-mapping>

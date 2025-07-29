@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.PreferencesNotifications" optimistic-lock="none" schema="public" table="preferences_notifications">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id" not-null="true"/>
+        </many-to-one>
+        <property name="notificationsEmail" type="java.lang.Boolean">
+            <column name="notifications_email"/>
+        </property>
+        <property name="notificationsSms" type="java.lang.Boolean">
+            <column name="notifications_sms"/>
+        </property>
+        <property name="notificationsPush" type="java.lang.Boolean">
+            <column name="notifications_push"/>
+        </property>
+        <property name="notificationsInApp" type="java.lang.Boolean">
+            <column name="notifications_in_app"/>
+        </property>
+        <property name="commandesEmail" type="java.lang.Boolean">
+            <column name="commandes_email"/>
+        </property>
+        <property name="commandesSms" type="java.lang.Boolean">
+            <column name="commandes_sms"/>
+        </property>
+        <property name="promotionsEmail" type="java.lang.Boolean">
+            <column name="promotions_email"/>
+        </property>
+        <property name="promotionsSms" type="java.lang.Boolean">
+            <column name="promotions_sms"/>
+        </property>
+        <property name="newsletter" type="java.lang.Boolean">
+            <column name="newsletter"/>
+        </property>
+        <property name="resumeQuotidien" type="java.lang.Boolean">
+            <column name="resume_quotidien"/>
+        </property>
+        <property name="resumeHebdomadaire" type="java.lang.Boolean">
+            <column name="resume_hebdomadaire"/>
+        </property>
+        <property name="heureDebut" type="time">
+            <column length="15" name="heure_debut"/>
+        </property>
+        <property name="heureFin" type="time">
+            <column length="15" name="heure_fin"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.StatutsCommande" optimistic-lock="none" schema="public" table="statuts_commande">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="20" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="libelle" type="string">
+            <column length="100" name="libelle" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="couleurHex" type="string">
+            <column length="7" name="couleur_hex"/>
+        </property>
+        <property name="ordreWorkflow" type="java.lang.Integer">
+            <column name="ordre_workflow"/>
+        </property>
+        <property name="estFinal" type="java.lang.Boolean">
+            <column name="est_final"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueStatutsCommandesForAncienStatutId" table="historique_statuts_commande">
+            <key>
+                <column name="ancien_statut_id"/>
+            </key>
+            <one-to-many class="model.HistoriqueStatutsCommande"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueStatutsCommandesForNouveauStatutId" table="historique_statuts_commande">
+            <key>
+                <column name="nouveau_statut_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.HistoriqueStatutsCommande"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="commandeses" table="commandes">
+            <key>
+                <column name="statut_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Commandes"/>
+        </set>
+    </class>
+</hibernate-mapping>

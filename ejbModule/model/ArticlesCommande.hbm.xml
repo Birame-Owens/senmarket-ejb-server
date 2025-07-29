@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.ArticlesCommande" optimistic-lock="none" schema="public" table="articles_commande">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <property name="nomProduit" type="string">
+            <column length="200" name="nom_produit" not-null="true"/>
+        </property>
+        <property name="skuProduit" type="string">
+            <column length="100" name="sku_produit"/>
+        </property>
+        <property name="quantite" type="int">
+            <column name="quantite" not-null="true"/>
+        </property>
+        <property name="prixUnitaire" type="big_decimal">
+            <column name="prix_unitaire" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="prixTotal" type="big_decimal">
+            <column name="prix_total" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="tauxTva" type="big_decimal">
+            <column name="taux_tva" precision="5" scale="2"/>
+        </property>
+        <property name="variationsCommandees" type="serializable">
+            <column name="variations_commandees"/>
+        </property>
+        <property name="personnalisations" type="serializable">
+            <column name="personnalisations"/>
+        </property>
+        <property name="statutArticle" type="string">
+            <column length="20" name="statut_article"/>
+        </property>
+        <property name="quantiteLivree" type="java.lang.Integer">
+            <column name="quantite_livree"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

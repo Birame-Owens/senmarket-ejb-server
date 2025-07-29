@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Entreprises" optimistic-lock="none" schema="public" table="entreprises">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Devises" fetch="select" name="devises">
+            <column name="devise_id"/>
+        </many-to-one>
+        <many-to-one class="model.Pays" fetch="select" name="pays">
+            <column name="pays_id"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="200" name="nom" not-null="true"/>
+        </property>
+        <property name="nomLegal" type="string">
+            <column length="200" name="nom_legal"/>
+        </property>
+        <property name="numeroEnregistrement" type="string">
+            <column length="100" name="numero_enregistrement"/>
+        </property>
+        <property name="numeroFiscal" type="string">
+            <column length="100" name="numero_fiscal"/>
+        </property>
+        <property name="codeEntreprise" type="string">
+            <column length="20" name="code_entreprise" unique="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="150" name="email"/>
+        </property>
+        <property name="telephone" type="string">
+            <column length="20" name="telephone"/>
+        </property>
+        <property name="siteWeb" type="string">
+            <column length="200" name="site_web"/>
+        </property>
+        <property name="adresseLigne1" type="string">
+            <column name="adresse_ligne1"/>
+        </property>
+        <property name="adresseLigne2" type="string">
+            <column name="adresse_ligne2"/>
+        </property>
+        <property name="ville" type="string">
+            <column length="100" name="ville"/>
+        </property>
+        <property name="region" type="string">
+            <column length="100" name="region"/>
+        </property>
+        <property name="codePostal" type="string">
+            <column length="20" name="code_postal"/>
+        </property>
+        <property name="coordonneesGps" type="serializable">
+            <column name="coordonnees_gps"/>
+        </property>
+        <property name="secteurActivite" type="string">
+            <column length="100" name="secteur_activite"/>
+        </property>
+        <property name="nombreEmployes" type="java.lang.Integer">
+            <column name="nombre_employes"/>
+        </property>
+        <property name="anneeCreation" type="java.lang.Integer">
+            <column name="annee_creation"/>
+        </property>
+        <property name="chiffreAffaires" type="big_decimal">
+            <column name="chiffre_affaires" precision="15" scale="2"/>
+        </property>
+        <property name="logoUrl" type="string">
+            <column length="500" name="logo_url"/>
+        </property>
+        <property name="couleursMarque" type="serializable">
+            <column name="couleurs_marque"/>
+        </property>
+        <property name="fuseauHoraire" type="string">
+            <column length="50" name="fuseau_horaire"/>
+        </property>
+        <property name="langueParDefaut" type="string">
+            <column length="10" name="langue_par_defaut"/>
+        </property>
+        <property name="parametres" type="serializable">
+            <column name="parametres"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="estVerifie" type="java.lang.Boolean">
+            <column name="est_verifie"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="boutiqueses" table="boutiques">
+            <key>
+                <column name="entreprise_id"/>
+            </key>
+            <one-to-many class="model.Boutiques"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="employeses" table="employes">
+            <key>
+                <column name="entreprise_id"/>
+            </key>
+            <one-to-many class="model.Employes"/>
+        </set>
+    </class>
+</hibernate-mapping>

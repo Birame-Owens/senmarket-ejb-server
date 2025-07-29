@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Clients" optimistic-lock="none" schema="public" table="clients">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Personnes" fetch="select" name="personnes">
+            <column name="personne_id" not-null="true"/>
+        </many-to-one>
+        <property name="numeroClient" type="string">
+            <column length="50" name="numero_client" unique="true"/>
+        </property>
+        <property name="boutiquesPreferees" type="serializable">
+            <column name="boutiques_preferees"/>
+        </property>
+        <property name="categoriesPreferees" type="serializable">
+            <column name="categories_preferees"/>
+        </property>
+        <property name="marquesPreferees" type="serializable">
+            <column name="marques_preferees"/>
+        </property>
+        <property name="premiereCommandeLe" type="timestamp">
+            <column length="29" name="premiere_commande_le"/>
+        </property>
+        <property name="derniereCommandeLe" type="timestamp">
+            <column length="29" name="derniere_commande_le"/>
+        </property>
+        <property name="nombreCommandes" type="java.lang.Integer">
+            <column name="nombre_commandes"/>
+        </property>
+        <property name="totalDepense" type="big_decimal">
+            <column name="total_depense" precision="15" scale="2"/>
+        </property>
+        <property name="panierMoyen" type="big_decimal">
+            <column name="panier_moyen" precision="12" scale="2"/>
+        </property>
+        <property name="pointsFidelite" type="java.lang.Integer">
+            <column name="points_fidelite"/>
+        </property>
+        <property name="niveauFidelite" type="string">
+            <column length="20" name="niveau_fidelite"/>
+        </property>
+        <property name="accepteNewsletter" type="java.lang.Boolean">
+            <column name="accepte_newsletter"/>
+        </property>
+        <property name="accepteSmsPromo" type="java.lang.Boolean">
+            <column name="accepte_sms_promo"/>
+        </property>
+        <property name="accepteNotificationsPush" type="java.lang.Boolean">
+            <column name="accepte_notifications_push"/>
+        </property>
+        <property name="comportementAchat" type="serializable">
+            <column name="comportement_achat"/>
+        </property>
+        <property name="segmentationClient" type="string">
+            <column length="50" name="segmentation_client"/>
+        </property>
+        <property name="dateInscription" type="timestamp">
+            <column length="29" name="date_inscription"/>
+        </property>
+        <property name="derniereActivite" type="timestamp">
+            <column length="29" name="derniere_activite"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsBoutiqueses" table="evaluations_boutiques">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.EvaluationsBoutiques"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="panierses" table="paniers">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Paniers"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="commandeses" table="commandes">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Commandes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="utilisationsCodesPromos" table="utilisations_codes_promo">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.UtilisationsCodesPromo"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="votesEvaluationses" table="votes_evaluations">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.VotesEvaluations"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsProduitses" table="evaluations_produits">
+            <key>
+                <column name="client_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.EvaluationsProduits"/>
+        </set>
+    </class>
+</hibernate-mapping>

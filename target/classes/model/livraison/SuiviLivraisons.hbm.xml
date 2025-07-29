@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.SuiviLivraisons" optimistic-lock="none" schema="public" table="suivi_livraisons">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Livraisons" fetch="select" name="livraisons">
+            <column name="livraison_id" not-null="true"/>
+        </many-to-one>
+        <property name="evenement" type="string">
+            <column length="50" name="evenement" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="lieu" type="string">
+            <column length="200" name="lieu"/>
+        </property>
+        <property name="coordonnees" type="serializable">
+            <column name="coordonnees"/>
+        </property>
+        <property name="transporteurInfo" type="serializable">
+            <column name="transporteur_info"/>
+        </property>
+        <property name="detailsSupplementaires" type="serializable">
+            <column name="details_supplementaires"/>
+        </property>
+        <property name="timestampEvenement" type="timestamp">
+            <column length="29" name="timestamp_evenement"/>
+        </property>
+        <property name="timestampExterne" type="timestamp">
+            <column length="29" name="timestamp_externe"/>
+        </property>
+        <property name="source" type="string">
+            <column length="20" name="source"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Marques" optimistic-lock="none" schema="public" table="marques">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Pays" fetch="select" name="pays">
+            <column name="pays_origine_id"/>
+        </many-to-one>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true" unique="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="logoUrl" type="string">
+            <column length="500" name="logo_url"/>
+        </property>
+        <property name="siteWeb" type="string">
+            <column length="200" name="site_web"/>
+        </property>
+        <property name="metadonnees" type="serializable">
+            <column name="metadonnees"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="produitses" table="produits">
+            <key>
+                <column name="marque_id"/>
+            </key>
+            <one-to-many class="model.Produits"/>
+        </set>
+    </class>
+</hibernate-mapping>

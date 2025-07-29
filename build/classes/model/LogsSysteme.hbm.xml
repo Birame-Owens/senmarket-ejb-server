@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.LogsSysteme" optimistic-lock="none" schema="public" table="logs_systeme">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id"/>
+        </many-to-one>
+        <property name="niveau" type="string">
+            <column length="10" name="niveau" not-null="true"/>
+        </property>
+        <property name="module" type="string">
+            <column length="50" name="module" not-null="true"/>
+        </property>
+        <property name="action" type="string">
+            <column length="100" name="action" not-null="true"/>
+        </property>
+        <property name="sessionId" type="string">
+            <column length="255" name="session_id"/>
+        </property>
+        <property name="adresseIp" type="serializable">
+            <column name="adresse_ip"/>
+        </property>
+        <property name="message" type="string">
+            <column name="message" not-null="true"/>
+        </property>
+        <property name="donnees" type="serializable">
+            <column name="donnees"/>
+        </property>
+        <property name="stackTrace" type="string">
+            <column name="stack_trace"/>
+        </property>
+        <property name="dureeExecution" type="java.lang.Integer">
+            <column name="duree_execution"/>
+        </property>
+        <property name="memoireUtilisee" type="java.lang.Integer">
+            <column name="memoire_utilisee"/>
+        </property>
+        <property name="timestampLog" type="timestamp">
+            <column length="29" name="timestamp_log"/>
+        </property>
+    </class>
+</hibernate-mapping>

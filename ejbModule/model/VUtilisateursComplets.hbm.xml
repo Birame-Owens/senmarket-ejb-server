@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VUtilisateursComplets" optimistic-lock="none" schema="public" table="v_utilisateurs_complets">
+        <composite-id class="model.VUtilisateursCompletsId" name="id">
+            <key-property name="compteActif" type="java.lang.Boolean">
+                <column name="compte_actif"/>
+            </key-property>
+            <key-property name="connexionGoogle" type="java.lang.Boolean">
+                <column name="connexion_google"/>
+            </key-property>
+            <key-property name="derniereConnexionLe" type="timestamp">
+                <column length="29" name="derniere_connexion_le"/>
+            </key-property>
+            <key-property name="email" type="string">
+                <column length="150" name="email"/>
+            </key-property>
+            <key-property name="estVerifie" type="java.lang.Boolean">
+                <column name="est_verifie"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="nomComplet" type="string">
+                <column length="201" name="nom_complet"/>
+            </key-property>
+            <key-property name="nomUtilisateur" type="string">
+                <column length="50" name="nom_utilisateur"/>
+            </key-property>
+            <key-property name="paysId" type="java.lang.Integer">
+                <column name="pays_id"/>
+            </key-property>
+            <key-property name="paysNom" type="string">
+                <column length="100" name="pays_nom"/>
+            </key-property>
+            <key-property name="profilNom" type="string">
+                <column length="100" name="profil_nom"/>
+            </key-property>
+            <key-property name="telephone" type="string">
+                <column length="20" name="telephone"/>
+            </key-property>
+            <key-property name="uuid" type="serializable">
+                <column name="uuid"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

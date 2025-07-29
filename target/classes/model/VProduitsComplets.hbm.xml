@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VProduitsComplets" optimistic-lock="none" schema="public" table="v_produits_complets">
+        <composite-id class="model.VProduitsCompletsId" name="id">
+            <key-property name="boutiqueCoordonnees" type="serializable">
+                <column name="boutique_coordonnees"/>
+            </key-property>
+            <key-property name="boutiqueNom" type="string">
+                <column length="150" name="boutique_nom"/>
+            </key-property>
+            <key-property name="boutiqueVille" type="string">
+                <column length="100" name="boutique_ville"/>
+            </key-property>
+            <key-property name="categorieNom" type="string">
+                <column length="150" name="categorie_nom"/>
+            </key-property>
+            <key-property name="descriptionCourte" type="string">
+                <column length="500" name="description_courte"/>
+            </key-property>
+            <key-property name="estEnPromotion" type="java.lang.Boolean">
+                <column name="est_en_promotion"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="imagePrincipaleUrl" type="string">
+                <column length="500" name="image_principale_url"/>
+            </key-property>
+            <key-property name="marqueNom" type="string">
+                <column length="100" name="marque_nom"/>
+            </key-property>
+            <key-property name="nom" type="string">
+                <column length="200" name="nom"/>
+            </key-property>
+            <key-property name="nombreEvaluations" type="java.lang.Integer">
+                <column name="nombre_evaluations"/>
+            </key-property>
+            <key-property name="noteMoyenne" type="big_decimal">
+                <column name="note_moyenne" precision="3" scale="2"/>
+            </key-property>
+            <key-property name="prixPromo" type="big_decimal">
+                <column name="prix_promo" precision="12" scale="2"/>
+            </key-property>
+            <key-property name="prixVente" type="big_decimal">
+                <column name="prix_vente" precision="12" scale="2"/>
+            </key-property>
+            <key-property name="stockActuel" type="java.lang.Integer">
+                <column name="stock_actuel"/>
+            </key-property>
+            <key-property name="uuid" type="serializable">
+                <column name="uuid"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

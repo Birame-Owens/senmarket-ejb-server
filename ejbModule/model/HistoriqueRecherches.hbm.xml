@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.HistoriqueRecherches" optimistic-lock="none" schema="public" table="historique_recherches">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_clique_id"/>
+        </many-to-one>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="compte_id"/>
+        </many-to-one>
+        <many-to-one class="model.Boutiques" fetch="select" name="boutiques">
+            <column name="boutique_cliquee_id"/>
+        </many-to-one>
+        <property name="sessionId" type="string">
+            <column length="255" name="session_id"/>
+        </property>
+        <property name="texteRecherche" type="string">
+            <column name="texte_recherche"/>
+        </property>
+        <property name="typeRecherche" type="string">
+            <column length="20" name="type_recherche"/>
+        </property>
+        <property name="langueRecherche" type="string">
+            <column length="10" name="langue_recherche"/>
+        </property>
+        <property name="fichierAudioUrl" type="string">
+            <column length="500" name="fichier_audio_url"/>
+        </property>
+        <property name="transcriptionAudio" type="string">
+            <column name="transcription_audio"/>
+        </property>
+        <property name="confianceTranscription" type="big_decimal">
+            <column name="confiance_transcription" precision="4" scale="3"/>
+        </property>
+        <property name="imageRechercheUrl" type="string">
+            <column length="500" name="image_recherche_url"/>
+        </property>
+        <property name="hashImage" type="string">
+            <column length="255" name="hash_image"/>
+        </property>
+        <property name="objetsDetectes" type="serializable">
+            <column name="objets_detectes"/>
+        </property>
+        <property name="nombreResultats" type="java.lang.Integer">
+            <column name="nombre_resultats"/>
+        </property>
+        <property name="resultatsIds" type="serializable">
+            <column name="resultats_ids"/>
+        </property>
+        <property name="tempsRechercheMs" type="java.lang.Integer">
+            <column name="temps_recherche_ms"/>
+        </property>
+        <property name="coordonneesRecherche" type="serializable">
+            <column name="coordonnees_recherche"/>
+        </property>
+        <property name="rayonRechercheKm" type="java.lang.Integer">
+            <column name="rayon_recherche_km"/>
+        </property>
+        <property name="filtresAppliques" type="serializable">
+            <column name="filtres_appliques"/>
+        </property>
+        <property name="triApplique" type="string">
+            <column length="50" name="tri_applique"/>
+        </property>
+        <property name="ACliqueResultat" type="java.lang.Boolean">
+            <column name="a_clique_resultat"/>
+        </property>
+        <property name="positionClic" type="java.lang.Integer">
+            <column name="position_clic"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.AuditModifications" optimistic-lock="none" schema="public" table="audit_modifications">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="modifie_par"/>
+        </many-to-one>
+        <property name="tableConcernee" type="string">
+            <column length="100" name="table_concernee" not-null="true"/>
+        </property>
+        <property name="idEnregistrement" type="int">
+            <column name="id_enregistrement" not-null="true"/>
+        </property>
+        <property name="operation" type="string">
+            <column length="10" name="operation" not-null="true"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <property name="adresseIp" type="serializable">
+            <column name="adresse_ip"/>
+        </property>
+        <property name="donneesAvant" type="serializable">
+            <column name="donnees_avant"/>
+        </property>
+        <property name="donneesApres" type="serializable">
+            <column name="donnees_apres"/>
+        </property>
+        <property name="champsModifies" type="serializable">
+            <column name="champs_modifies"/>
+        </property>
+        <property name="raisonModification" type="string">
+            <column name="raison_modification"/>
+        </property>
+        <property name="sessionId" type="string">
+            <column length="255" name="session_id"/>
+        </property>
+    </class>
+</hibernate-mapping>

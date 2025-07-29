@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.TemplatesNotifications" schema="public" table="templates_notifications">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="java.lang.Integer">
+            <column name="version"/>
+        </version>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="cree_par"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column length="50" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="150" name="nom" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="typeNotification" type="string">
+            <column length="20" name="type_notification" not-null="true"/>
+        </property>
+        <property name="evenementDeclencheur" type="string">
+            <column length="50" name="evenement_declencheur" not-null="true"/>
+        </property>
+        <property name="sujet" type="string">
+            <column length="200" name="sujet"/>
+        </property>
+        <property name="contenuHtml" type="string">
+            <column name="contenu_html"/>
+        </property>
+        <property name="contenuTexte" type="string">
+            <column name="contenu_texte"/>
+        </property>
+        <property name="contenuPush" type="serializable">
+            <column name="contenu_push"/>
+        </property>
+        <property name="variablesDisponibles" type="serializable">
+            <column name="variables_disponibles"/>
+        </property>
+        <property name="langue" type="string">
+            <column length="10" name="langue"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="notificationsEnvoyeeses" table="notifications_envoyees">
+            <key>
+                <column name="template_id"/>
+            </key>
+            <one-to-many class="model.NotificationsEnvoyees"/>
+        </set>
+    </class>
+</hibernate-mapping>

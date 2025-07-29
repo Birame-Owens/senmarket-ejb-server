@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Livraisons" optimistic-lock="none" schema="public" table="livraisons">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Transporteurs" fetch="select" name="transporteurs">
+            <column name="transporteur_id"/>
+        </many-to-one>
+        <many-to-one class="model.Employes" fetch="select" name="employes">
+            <column name="livreur_id"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="numeroSuivi" type="string">
+            <column length="100" name="numero_suivi" unique="true"/>
+        </property>
+        <property name="typeLivraison" type="string">
+            <column length="20" name="type_livraison"/>
+        </property>
+        <property name="adresseOrigine" type="serializable">
+            <column name="adresse_origine" not-null="true"/>
+        </property>
+        <property name="adresseDestination" type="serializable">
+            <column name="adresse_destination" not-null="true"/>
+        </property>
+        <property name="coordonneesOrigine" type="serializable">
+            <column name="coordonnees_origine"/>
+        </property>
+        <property name="coordonneesDestination" type="serializable">
+            <column name="coordonnees_destination"/>
+        </property>
+        <property name="instructionsLivraison" type="string">
+            <column name="instructions_livraison"/>
+        </property>
+        <property name="notesLivreur" type="string">
+            <column name="notes_livreur"/>
+        </property>
+        <property name="codeAcces" type="string">
+            <column length="20" name="code_acces"/>
+        </property>
+        <property name="dateExpedition" type="timestamp">
+            <column length="29" name="date_expedition"/>
+        </property>
+        <property name="dateLivraisonPrevue" type="timestamp">
+            <column length="29" name="date_livraison_prevue"/>
+        </property>
+        <property name="creneauLivraisonDebut" type="timestamp">
+            <column length="29" name="creneau_livraison_debut"/>
+        </property>
+        <property name="creneauLivraisonFin" type="timestamp">
+            <column length="29" name="creneau_livraison_fin"/>
+        </property>
+        <property name="dateLivraisonReelle" type="timestamp">
+            <column length="29" name="date_livraison_reelle"/>
+        </property>
+        <property name="statut" type="string">
+            <column length="20" name="statut"/>
+        </property>
+        <property name="dernierePosition" type="serializable">
+            <column name="derniere_position"/>
+        </property>
+        <property name="derniereMiseAJour" type="timestamp">
+            <column length="29" name="derniere_mise_a_jour"/>
+        </property>
+        <property name="poidsTotal" type="big_decimal">
+            <column name="poids_total" precision="8" scale="3"/>
+        </property>
+        <property name="dimensions" type="serializable">
+            <column name="dimensions"/>
+        </property>
+        <property name="valeurDeclaree" type="big_decimal">
+            <column name="valeur_declaree" precision="12" scale="2"/>
+        </property>
+        <property name="estFragile" type="java.lang.Boolean">
+            <column name="est_fragile"/>
+        </property>
+        <property name="necessiteSignature" type="java.lang.Boolean">
+            <column name="necessite_signature"/>
+        </property>
+        <property name="nombreTentatives" type="java.lang.Integer">
+            <column name="nombre_tentatives"/>
+        </property>
+        <property name="maxTentatives" type="java.lang.Integer">
+            <column name="max_tentatives"/>
+        </property>
+        <property name="fraisLivraison" type="big_decimal">
+            <column name="frais_livraison" precision="10" scale="2"/>
+        </property>
+        <property name="fraisAdditionnels" type="big_decimal">
+            <column name="frais_additionnels" precision="10" scale="2"/>
+        </property>
+        <property name="photoExpeditionUrl" type="string">
+            <column length="500" name="photo_expedition_url"/>
+        </property>
+        <property name="photoLivraisonUrl" type="string">
+            <column length="500" name="photo_livraison_url"/>
+        </property>
+        <property name="signatureElectronique" type="string">
+            <column name="signature_electronique"/>
+        </property>
+        <property name="nomReceptionnaire" type="string">
+            <column length="100" name="nom_receptionnaire"/>
+        </property>
+        <property name="lienReceptionnaire" type="string">
+            <column length="50" name="lien_receptionnaire"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="suiviLivraisonses" table="suivi_livraisons">
+            <key>
+                <column name="livraison_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.SuiviLivraisons"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.NotificationsEnvoyees" optimistic-lock="none" schema="public" table="notifications_envoyees">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="destinataire_id"/>
+        </many-to-one>
+        <many-to-one class="model.TemplatesNotifications" fetch="select" name="templatesNotifications">
+            <column name="template_id"/>
+        </many-to-one>
+        <property name="sujet" type="string">
+            <column length="200" name="sujet"/>
+        </property>
+        <property name="contenu" type="string">
+            <column name="contenu"/>
+        </property>
+        <property name="canal" type="string">
+            <column length="20" name="canal" not-null="true"/>
+        </property>
+        <property name="statut" type="string">
+            <column length="20" name="statut"/>
+        </property>
+        <property name="adresseDestination" type="string">
+            <column length="255" name="adresse_destination"/>
+        </property>
+        <property name="providerExterne" type="string">
+            <column length="50" name="provider_externe"/>
+        </property>
+        <property name="idExterne" type="string">
+            <column length="100" name="id_externe"/>
+        </property>
+        <property name="dateEnvoi" type="timestamp">
+            <column length="29" name="date_envoi"/>
+        </property>
+        <property name="dateLivraison" type="timestamp">
+            <column length="29" name="date_livraison"/>
+        </property>
+        <property name="dateOuverture" type="timestamp">
+            <column length="29" name="date_ouverture"/>
+        </property>
+        <property name="dateClic" type="timestamp">
+            <column length="29" name="date_clic"/>
+        </property>
+        <property name="codeErreur" type="string">
+            <column length="50" name="code_erreur"/>
+        </property>
+        <property name="messageErreur" type="string">
+            <column name="message_erreur"/>
+        </property>
+        <property name="nombreTentatives" type="java.lang.Integer">
+            <column name="nombre_tentatives"/>
+        </property>
+        <property name="contexte" type="serializable">
+            <column name="contexte"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

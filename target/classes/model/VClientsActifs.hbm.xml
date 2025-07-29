@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.VClientsActifs" optimistic-lock="none" schema="public" table="v_clients_actifs">
+        <composite-id class="model.VClientsActifsId" name="id">
+            <key-property name="derniereCommandeLe" type="timestamp">
+                <column length="29" name="derniere_commande_le"/>
+            </key-property>
+            <key-property name="email" type="string">
+                <column length="150" name="email"/>
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id"/>
+            </key-property>
+            <key-property name="niveauFidelite" type="string">
+                <column length="20" name="niveau_fidelite"/>
+            </key-property>
+            <key-property name="nomComplet" type="string">
+                <column length="201" name="nom_complet"/>
+            </key-property>
+            <key-property name="nombreCommandes" type="java.lang.Integer">
+                <column name="nombre_commandes"/>
+            </key-property>
+            <key-property name="panierMoyen" type="big_decimal">
+                <column name="panier_moyen" precision="12" scale="2"/>
+            </key-property>
+            <key-property name="pointsFidelite" type="java.lang.Integer">
+                <column name="points_fidelite"/>
+            </key-property>
+            <key-property name="statutActivite" type="string">
+                <column name="statut_activite"/>
+            </key-property>
+            <key-property name="telephone" type="string">
+                <column length="20" name="telephone"/>
+            </key-property>
+            <key-property name="totalDepense" type="big_decimal">
+                <column name="total_depense" precision="15" scale="2"/>
+            </key-property>
+            <key-property name="ville" type="string">
+                <column length="100" name="ville"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

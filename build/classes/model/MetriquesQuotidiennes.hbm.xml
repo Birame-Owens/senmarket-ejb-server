@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.MetriquesQuotidiennes" optimistic-lock="none" schema="public" table="metriques_quotidiennes">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Boutiques" fetch="select" name="boutiques">
+            <column name="boutique_id"/>
+        </many-to-one>
+        <property name="dateMetrique" type="date">
+            <column length="13" name="date_metrique" not-null="true"/>
+        </property>
+        <property name="nombreCommandes" type="java.lang.Integer">
+            <column name="nombre_commandes"/>
+        </property>
+        <property name="chiffreAffaires" type="big_decimal">
+            <column name="chiffre_affaires" precision="15" scale="2"/>
+        </property>
+        <property name="panierMoyen" type="big_decimal">
+            <column name="panier_moyen" precision="12" scale="2"/>
+        </property>
+        <property name="nombreArticlesVendus" type="java.lang.Integer">
+            <column name="nombre_articles_vendus"/>
+        </property>
+        <property name="visiteursUniques" type="java.lang.Integer">
+            <column name="visiteurs_uniques"/>
+        </property>
+        <property name="pagesVues" type="java.lang.Integer">
+            <column name="pages_vues"/>
+        </property>
+        <property name="tauxConversion" type="big_decimal">
+            <column name="taux_conversion" precision="5" scale="4"/>
+        </property>
+        <property name="tauxAbandonPanier" type="big_decimal">
+            <column name="taux_abandon_panier" precision="5" scale="4"/>
+        </property>
+        <property name="recherchesEffectuees" type="java.lang.Integer">
+            <column name="recherches_effectuees"/>
+        </property>
+        <property name="recherchesSansResultat" type="java.lang.Integer">
+            <column name="recherches_sans_resultat"/>
+        </property>
+        <property name="recherchesVocales" type="java.lang.Integer">
+            <column name="recherches_vocales"/>
+        </property>
+        <property name="recherchesImages" type="java.lang.Integer">
+            <column name="recherches_images"/>
+        </property>
+        <property name="evaluationsRecues" type="java.lang.Integer">
+            <column name="evaluations_recues"/>
+        </property>
+        <property name="noteMoyenneJour" type="big_decimal">
+            <column name="note_moyenne_jour" precision="3" scale="2"/>
+        </property>
+        <property name="nouveauxClients" type="java.lang.Integer">
+            <column name="nouveaux_clients"/>
+        </property>
+        <property name="nouveauxVendeurs" type="java.lang.Integer">
+            <column name="nouveaux_vendeurs"/>
+        </property>
+        <property name="calculeeLe" type="timestamp">
+            <column length="29" name="calculee_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

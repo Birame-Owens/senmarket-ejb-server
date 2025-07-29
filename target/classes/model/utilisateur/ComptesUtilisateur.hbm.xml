@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.ComptesUtilisateur" optimistic-lock="none" schema="public" table="comptes_utilisateur">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Personnes" fetch="select" name="personnes">
+            <column name="personne_id" not-null="true"/>
+        </many-to-one>
+        <property name="nomUtilisateur" type="string">
+            <column length="50" name="nom_utilisateur" unique="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="150" name="email" not-null="true" unique="true"/>
+        </property>
+        <property name="motDePasseHash" type="string">
+            <column length="255" name="mot_de_passe_hash"/>
+        </property>
+        <property name="googleId" type="string">
+            <column length="100" name="google_id" unique="true"/>
+        </property>
+        <property name="googleAccessToken" type="string">
+            <column name="google_access_token"/>
+        </property>
+        <property name="googleRefreshToken" type="string">
+            <column name="google_refresh_token"/>
+        </property>
+        <property name="googleTokenExpireLe" type="timestamp">
+            <column length="29" name="google_token_expire_le"/>
+        </property>
+        <property name="facebookId" type="string">
+            <column length="100" name="facebook_id" unique="true"/>
+        </property>
+        <property name="appleId" type="string">
+            <column length="100" name="apple_id" unique="true"/>
+        </property>
+        <property name="oauthMetadata" type="serializable">
+            <column name="oauth_metadata"/>
+        </property>
+        <property name="doubleAuthentificationActive" type="java.lang.Boolean">
+            <column name="double_authentification_active"/>
+        </property>
+        <property name="secretDoubleAuth" type="string">
+            <column length="100" name="secret_double_auth"/>
+        </property>
+        <property name="codesRecuperation" type="serializable">
+            <column name="codes_recuperation"/>
+        </property>
+        <property name="emailVerifieLe" type="timestamp">
+            <column length="29" name="email_verifie_le"/>
+        </property>
+        <property name="telephoneVerifieLe" type="timestamp">
+            <column length="29" name="telephone_verifie_le"/>
+        </property>
+        <property name="codeVerification" type="string">
+            <column length="10" name="code_verification"/>
+        </property>
+        <property name="codeExpireLe" type="timestamp">
+            <column length="29" name="code_expire_le"/>
+        </property>
+        <property name="derniereConnexionLe" type="timestamp">
+            <column length="29" name="derniere_connexion_le"/>
+        </property>
+        <property name="derniereConnexionIp" type="serializable">
+            <column name="derniere_connexion_ip"/>
+        </property>
+        <property name="tentativesEchec" type="java.lang.Integer">
+            <column name="tentatives_echec"/>
+        </property>
+        <property name="verrouilleJusqu" type="timestamp">
+            <column length="29" name="verrouille_jusqu"/>
+        </property>
+        <property name="motDePasseExpireLe" type="timestamp">
+            <column length="29" name="mot_de_passe_expire_le"/>
+        </property>
+        <property name="notificationsEmail" type="java.lang.Boolean">
+            <column name="notifications_email"/>
+        </property>
+        <property name="notificationsPush" type="java.lang.Boolean">
+            <column name="notifications_push"/>
+        </property>
+        <property name="notificationsSms" type="java.lang.Boolean">
+            <column name="notifications_sms"/>
+        </property>
+        <property name="stripeCustomerId" type="string">
+            <column length="100" name="stripe_customer_id" unique="true"/>
+        </property>
+        <property name="stripeAccountId" type="string">
+            <column length="100" name="stripe_account_id" unique="true"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="estVerifie" type="java.lang.Boolean">
+            <column name="est_verifie"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="mouvementsStocks" table="mouvements_stock">
+            <key>
+                <column name="cree_par"/>
+            </key>
+            <one-to-many class="model.MouvementsStock"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="logsSystemes" table="logs_systeme">
+            <key>
+                <column name="compte_id"/>
+            </key>
+            <one-to-many class="model.LogsSysteme"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsProduitses" table="evaluations_produits">
+            <key>
+                <column name="modere_par"/>
+            </key>
+            <one-to-many class="model.EvaluationsProduits"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueConnexionses" table="historique_connexions">
+            <key>
+                <column name="compte_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.HistoriqueConnexions"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueStatutsCommandes" table="historique_statuts_commande">
+            <key>
+                <column name="change_par"/>
+            </key>
+            <one-to-many class="model.HistoriqueStatutsCommande"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="remboursementsesForApprouvePar" table="remboursements">
+            <key>
+                <column name="approuve_par"/>
+            </key>
+            <one-to-many class="model.Remboursements"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="codesPromotionnelses" table="codes_promotionnels">
+            <key>
+                <column name="cree_par"/>
+            </key>
+            <one-to-many class="model.CodesPromotionnels"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="templatesNotificationses" table="templates_notifications">
+            <key>
+                <column name="cree_par"/>
+            </key>
+            <one-to-many class="model.TemplatesNotifications"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evenementsAnalyticses" table="evenements_analytics">
+            <key>
+                <column name="compte_id"/>
+            </key>
+            <one-to-many class="model.EvenementsAnalytics"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="preferencesNotificationses" table="preferences_notifications">
+            <key>
+                <column name="compte_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.PreferencesNotifications"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="auditModificationses" table="audit_modifications">
+            <key>
+                <column name="modifie_par"/>
+            </key>
+            <one-to-many class="model.AuditModifications"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="remboursementsesForDemandePar" table="remboursements">
+            <key>
+                <column name="demande_par"/>
+            </key>
+            <one-to-many class="model.Remboursements"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueRechercheses" table="historique_recherches">
+            <key>
+                <column name="compte_id"/>
+            </key>
+            <one-to-many class="model.HistoriqueRecherches"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="campagnesMarketings" table="campagnes_marketing">
+            <key>
+                <column name="cree_par"/>
+            </key>
+            <one-to-many class="model.CampagnesMarketing"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="notificationsEnvoyeeses" table="notifications_envoyees">
+            <key>
+                <column name="destinataire_id"/>
+            </key>
+            <one-to-many class="model.NotificationsEnvoyees"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="sessionsActiveses" table="sessions_actives">
+            <key>
+                <column name="compte_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.SessionsActives"/>
+        </set>
+    </class>
+</hibernate-mapping>

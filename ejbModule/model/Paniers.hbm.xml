@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Paniers" optimistic-lock="none" schema="public" table="paniers">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Clients" fetch="select" name="clients">
+            <column name="client_id" not-null="true"/>
+        </many-to-one>
+        <property name="sessionId" type="string">
+            <column length="255" name="session_id"/>
+        </property>
+        <property name="sousTotal" type="big_decimal">
+            <column name="sous_total" precision="12" scale="2"/>
+        </property>
+        <property name="montantTva" type="big_decimal">
+            <column name="montant_tva" precision="12" scale="2"/>
+        </property>
+        <property name="fraisLivraison" type="big_decimal">
+            <column name="frais_livraison" precision="12" scale="2"/>
+        </property>
+        <property name="remiseAppliquee" type="big_decimal">
+            <column name="remise_appliquee" precision="12" scale="2"/>
+        </property>
+        <property name="totalFinal" type="big_decimal">
+            <column name="total_final" precision="12" scale="2"/>
+        </property>
+        <property name="codePromoApplique" type="string">
+            <column length="50" name="code_promo_applique"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <property name="dateExpiration" type="timestamp">
+            <column length="29" name="date_expiration"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="articlesPaniers" table="articles_panier">
+            <key>
+                <column name="panier_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.ArticlesPanier"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Commandes" optimistic-lock="none" schema="public" table="commandes">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Boutiques" fetch="select" name="boutiques">
+            <column name="boutique_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Devises" fetch="select" name="devises">
+            <column name="devise_id"/>
+        </many-to-one>
+        <many-to-one class="model.StatutsCommande" fetch="select" name="statutsCommande">
+            <column name="statut_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Clients" fetch="select" name="clients">
+            <column name="client_id" not-null="true"/>
+        </many-to-one>
+        <property name="uuid" type="serializable">
+            <column name="uuid" unique="true"/>
+        </property>
+        <property name="numeroCommande" type="string">
+            <column length="50" name="numero_commande" not-null="true" unique="true"/>
+        </property>
+        <property name="sousTotal" type="big_decimal">
+            <column name="sous_total" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="montantTva" type="big_decimal">
+            <column name="montant_tva" precision="12" scale="2"/>
+        </property>
+        <property name="fraisLivraison" type="big_decimal">
+            <column name="frais_livraison" precision="12" scale="2"/>
+        </property>
+        <property name="montantRemise" type="big_decimal">
+            <column name="montant_remise" precision="12" scale="2"/>
+        </property>
+        <property name="totalCommande" type="big_decimal">
+            <column name="total_commande" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="codePromoUtilise" type="string">
+            <column length="50" name="code_promo_utilise"/>
+        </property>
+        <property name="remisePourcentage" type="big_decimal">
+            <column name="remise_pourcentage" precision="5" scale="2"/>
+        </property>
+        <property name="remiseMontant" type="big_decimal">
+            <column name="remise_montant" precision="12" scale="2"/>
+        </property>
+        <property name="adresseLivraison" type="serializable">
+            <column name="adresse_livraison" not-null="true"/>
+        </property>
+        <property name="coordonneesLivraison" type="serializable">
+            <column name="coordonnees_livraison"/>
+        </property>
+        <property name="instructionsLivraison" type="string">
+            <column name="instructions_livraison"/>
+        </property>
+        <property name="dateCommande" type="timestamp">
+            <column length="29" name="date_commande"/>
+        </property>
+        <property name="dateConfirmation" type="timestamp">
+            <column length="29" name="date_confirmation"/>
+        </property>
+        <property name="datePreparation" type="timestamp">
+            <column length="29" name="date_preparation"/>
+        </property>
+        <property name="dateExpedition" type="timestamp">
+            <column length="29" name="date_expedition"/>
+        </property>
+        <property name="dateLivraisonPrevue" type="timestamp">
+            <column length="29" name="date_livraison_prevue"/>
+        </property>
+        <property name="dateLivraisonReelle" type="timestamp">
+            <column length="29" name="date_livraison_reelle"/>
+        </property>
+        <property name="numeroSuivi" type="string">
+            <column length="100" name="numero_suivi"/>
+        </property>
+        <property name="transporteur" type="string">
+            <column length="100" name="transporteur"/>
+        </property>
+        <property name="modePaiement" type="string">
+            <column length="50" name="mode_paiement"/>
+        </property>
+        <property name="statutPaiement" type="string">
+            <column length="20" name="statut_paiement"/>
+        </property>
+        <property name="transactionStripeId" type="string">
+            <column length="100" name="transaction_stripe_id"/>
+        </property>
+        <property name="transactionExterneId" type="string">
+            <column length="100" name="transaction_externe_id"/>
+        </property>
+        <property name="emailConfirmationEnvoye" type="java.lang.Boolean">
+            <column name="email_confirmation_envoye"/>
+        </property>
+        <property name="smsConfirmationEnvoye" type="java.lang.Boolean">
+            <column name="sms_confirmation_envoye"/>
+        </property>
+        <property name="notificationsEnvoyees" type="serializable">
+            <column name="notifications_envoyees"/>
+        </property>
+        <property name="canalCommande" type="string">
+            <column length="20" name="canal_commande"/>
+        </property>
+        <property name="appareilCommande" type="string">
+            <column length="50" name="appareil_commande"/>
+        </property>
+        <property name="navigateurCommande" type="string">
+            <column length="50" name="navigateur_commande"/>
+        </property>
+        <property name="notesClient" type="string">
+            <column name="notes_client"/>
+        </property>
+        <property name="notesInterne" type="string">
+            <column name="notes_interne"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="articlesCommandes" table="articles_commande">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.ArticlesCommande"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="livraisonses" table="livraisons">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Livraisons"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsBoutiqueses" table="evaluations_boutiques">
+            <key>
+                <column name="commande_id"/>
+            </key>
+            <one-to-many class="model.EvaluationsBoutiques"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="evaluationsProduitses" table="evaluations_produits">
+            <key>
+                <column name="commande_id"/>
+            </key>
+            <one-to-many class="model.EvaluationsProduits"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="historiqueStatutsCommandes" table="historique_statuts_commande">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.HistoriqueStatutsCommande"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="remboursementses" table="remboursements">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.Remboursements"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="transactionsPaiements" table="transactions_paiement">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.TransactionsPaiement"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="utilisationsCodesPromos" table="utilisations_codes_promo">
+            <key>
+                <column name="commande_id" not-null="true"/>
+            </key>
+            <one-to-many class="model.UtilisationsCodesPromo"/>
+        </set>
+    </class>
+</hibernate-mapping>

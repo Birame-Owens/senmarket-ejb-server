@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Remboursements" optimistic-lock="none" schema="public" table="remboursements">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateurByApprouvePar">
+            <column name="approuve_par"/>
+        </many-to-one>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateurByDemandePar">
+            <column name="demande_par"/>
+        </many-to-one>
+        <many-to-one class="model.TransactionsPaiement" fetch="select" name="transactionsPaiement">
+            <column name="transaction_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <property name="montantDemande" type="big_decimal">
+            <column name="montant_demande" not-null="true" precision="12" scale="2"/>
+        </property>
+        <property name="montantApprouve" type="big_decimal">
+            <column name="montant_approuve" precision="12" scale="2"/>
+        </property>
+        <property name="fraisRemboursement" type="big_decimal">
+            <column name="frais_remboursement" precision="12" scale="2"/>
+        </property>
+        <property name="motif" type="string">
+            <column length="100" name="motif" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"/>
+        </property>
+        <property name="piecesJustificatives" type="serializable">
+            <column name="pieces_justificatives"/>
+        </property>
+        <property name="dateDemande" type="timestamp">
+            <column length="29" name="date_demande"/>
+        </property>
+        <property name="dateApprobation" type="timestamp">
+            <column length="29" name="date_approbation"/>
+        </property>
+        <property name="dateTraitement" type="timestamp">
+            <column length="29" name="date_traitement"/>
+        </property>
+        <property name="statut" type="string">
+            <column length="20" name="statut"/>
+        </property>
+        <property name="commentaireInterne" type="string">
+            <column name="commentaire_interne"/>
+        </property>
+        <property name="stripeRefundId" type="string">
+            <column length="100" name="stripe_refund_id"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

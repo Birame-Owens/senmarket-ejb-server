@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Pays" optimistic-lock="none" schema="public" table="pays">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="code" type="string">
+            <column length="3" name="code" not-null="true" unique="true"/>
+        </property>
+        <property name="nom" type="string">
+            <column length="100" name="nom" not-null="true"/>
+        </property>
+        <property name="codeDevise" type="string">
+            <column length="3" name="code_devise"/>
+        </property>
+        <property name="prefixeTelephone" type="string">
+            <column length="10" name="prefixe_telephone"/>
+        </property>
+        <property name="fuseauHoraire" type="string">
+            <column length="50" name="fuseau_horaire"/>
+        </property>
+        <property name="languePrincipale" type="string">
+            <column length="10" name="langue_principale"/>
+        </property>
+        <property name="estActif" type="java.lang.Boolean">
+            <column name="est_actif"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="boutiqueses" table="boutiques">
+            <key>
+                <column name="pays_id"/>
+            </key>
+            <one-to-many class="model.Boutiques"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="entrepriseses" table="entreprises">
+            <key>
+                <column name="pays_id"/>
+            </key>
+            <one-to-many class="model.Entreprises"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="personneses" table="personnes">
+            <key>
+                <column name="pays_id"/>
+            </key>
+            <one-to-many class="model.Personnes"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="marqueses" table="marques">
+            <key>
+                <column name="pays_origine_id"/>
+            </key>
+            <one-to-many class="model.Marques"/>
+        </set>
+    </class>
+</hibernate-mapping>

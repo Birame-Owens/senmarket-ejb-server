@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.EvaluationsBoutiques" optimistic-lock="none" schema="public" table="evaluations_boutiques">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Boutiques" fetch="select" name="boutiques">
+            <column name="boutique_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id"/>
+        </many-to-one>
+        <many-to-one class="model.Clients" fetch="select" name="clients">
+            <column name="client_id" not-null="true"/>
+        </many-to-one>
+        <property name="noteGlobale" type="int">
+            <column name="note_globale" not-null="true"/>
+        </property>
+        <property name="noteQualiteProduits" type="java.lang.Integer">
+            <column name="note_qualite_produits"/>
+        </property>
+        <property name="noteServiceClient" type="java.lang.Integer">
+            <column name="note_service_client"/>
+        </property>
+        <property name="noteRapiditeLivraison" type="java.lang.Integer">
+            <column name="note_rapidite_livraison"/>
+        </property>
+        <property name="titre" type="string">
+            <column length="200" name="titre"/>
+        </property>
+        <property name="commentaire" type="string">
+            <column name="commentaire"/>
+        </property>
+        <property name="recommande" type="java.lang.Boolean">
+            <column name="recommande"/>
+        </property>
+        <property name="estModere" type="java.lang.Boolean">
+            <column name="est_modere"/>
+        </property>
+        <property name="estApprouve" type="java.lang.Boolean">
+            <column name="est_approuve"/>
+        </property>
+        <property name="votesUtile" type="java.lang.Integer">
+            <column name="votes_utile"/>
+        </property>
+        <property name="votesInutile" type="java.lang.Integer">
+            <column name="votes_inutile"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="votesEvaluationses" table="votes_evaluations">
+            <key>
+                <column name="evaluation_boutique_id"/>
+            </key>
+            <one-to-many class="model.VotesEvaluations"/>
+        </set>
+    </class>
+</hibernate-mapping>

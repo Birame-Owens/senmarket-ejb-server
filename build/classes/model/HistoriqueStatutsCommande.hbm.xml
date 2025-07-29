@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.HistoriqueStatutsCommande" optimistic-lock="none" schema="public" table="historique_statuts_commande">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="change_par"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.StatutsCommande" fetch="select" name="statutsCommandeByAncienStatutId">
+            <column name="ancien_statut_id"/>
+        </many-to-one>
+        <many-to-one class="model.StatutsCommande" fetch="select" name="statutsCommandeByNouveauStatutId">
+            <column name="nouveau_statut_id" not-null="true"/>
+        </many-to-one>
+        <property name="raisonChangement" type="string">
+            <column name="raison_changement"/>
+        </property>
+        <property name="commentaire" type="string">
+            <column name="commentaire"/>
+        </property>
+        <property name="notificationClientEnvoyee" type="java.lang.Boolean">
+            <column name="notification_client_envoyee"/>
+        </property>
+        <property name="changeLe" type="timestamp">
+            <column length="29" name="change_le"/>
+        </property>
+    </class>
+</hibernate-mapping>

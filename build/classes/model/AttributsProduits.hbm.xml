@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.AttributsProduits" optimistic-lock="none" schema="public" table="attributs_produits">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_id" not-null="true"/>
+        </many-to-one>
+        <property name="nomAttribut" type="string">
+            <column length="100" name="nom_attribut" not-null="true"/>
+        </property>
+        <property name="valeurAttribut" type="string">
+            <column name="valeur_attribut" not-null="true"/>
+        </property>
+        <property name="typeAttribut" type="string">
+            <column length="20" name="type_attribut"/>
+        </property>
+        <property name="ordreAffichage" type="java.lang.Integer">
+            <column name="ordre_affichage"/>
+        </property>
+        <property name="estFiltrable" type="java.lang.Boolean">
+            <column name="est_filtrable"/>
+        </property>
+        <property name="estObligatoire" type="java.lang.Boolean">
+            <column name="est_obligatoire"/>
+        </property>
+    </class>
+</hibernate-mapping>

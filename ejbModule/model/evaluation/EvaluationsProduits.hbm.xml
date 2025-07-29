@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 juil. 2025, 15:15:58 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.EvaluationsProduits" optimistic-lock="none" schema="public" table="evaluations_produits">
+        <id name="id" type="int">
+            <column name="id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="model.Produits" fetch="select" name="produits">
+            <column name="produit_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.ComptesUtilisateur" fetch="select" name="comptesUtilisateur">
+            <column name="modere_par"/>
+        </many-to-one>
+        <many-to-one class="model.Commandes" fetch="select" name="commandes">
+            <column name="commande_id"/>
+        </many-to-one>
+        <many-to-one class="model.Clients" fetch="select" name="clients">
+            <column name="client_id" not-null="true"/>
+        </many-to-one>
+        <property name="note" type="int">
+            <column name="note" not-null="true"/>
+        </property>
+        <property name="titre" type="string">
+            <column length="200" name="titre"/>
+        </property>
+        <property name="commentaire" type="string">
+            <column name="commentaire"/>
+        </property>
+        <property name="avantages" type="string">
+            <column name="avantages"/>
+        </property>
+        <property name="inconvenients" type="string">
+            <column name="inconvenients"/>
+        </property>
+        <property name="recommande" type="java.lang.Boolean">
+            <column name="recommande"/>
+        </property>
+        <property name="photosUrls" type="serializable">
+            <column name="photos_urls"/>
+        </property>
+        <property name="videosUrls" type="serializable">
+            <column name="videos_urls"/>
+        </property>
+        <property name="achatVerifie" type="java.lang.Boolean">
+            <column name="achat_verifie"/>
+        </property>
+        <property name="langueAvis" type="string">
+            <column length="10" name="langue_avis"/>
+        </property>
+        <property name="estModere" type="java.lang.Boolean">
+            <column name="est_modere"/>
+        </property>
+        <property name="estApprouve" type="java.lang.Boolean">
+            <column name="est_approuve"/>
+        </property>
+        <property name="raisonRejet" type="string">
+            <column name="raison_rejet"/>
+        </property>
+        <property name="votesUtile" type="java.lang.Integer">
+            <column name="votes_utile"/>
+        </property>
+        <property name="votesInutile" type="java.lang.Integer">
+            <column name="votes_inutile"/>
+        </property>
+        <property name="signalements" type="java.lang.Integer">
+            <column name="signalements"/>
+        </property>
+        <property name="creeLe" type="timestamp">
+            <column length="29" name="cree_le"/>
+        </property>
+        <property name="modifieLe" type="timestamp">
+            <column length="29" name="modifie_le"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="votesEvaluationses" table="votes_evaluations">
+            <key>
+                <column name="evaluation_produit_id"/>
+            </key>
+            <one-to-many class="model.VotesEvaluations"/>
+        </set>
+    </class>
+</hibernate-mapping>
